@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import Card from "./Card";
 
 const UserProfile = () => {
   const [userData, setUserData] = useState(null);
@@ -43,6 +44,23 @@ const UserProfile = () => {
           <p>Lastname: {userData.lastname}</p>
           <p>Mobile: {userData.mobile}</p>
           <p>Email: {userData.email}</p>
+          <h3>Forms:</h3>
+          {userData.forms && userData.forms.length > 0 ? (
+            <div className="Cards">
+              {userData.forms.map((item) => (
+                <Card
+                key={item._id}
+                src={item.image}
+                alt={item.username}
+                heading={item.cause}
+                personname={item.username}
+                funddetails={item.estimatedAmount}
+              />
+              ))}
+            </div>
+          ) : (
+            <p>No forms associated with the user.</p>
+          )}
           <button onClick={()=>logout()}>Logout</button>
         </div>
       ) : (

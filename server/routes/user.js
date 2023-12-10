@@ -39,7 +39,7 @@ router.get('/profile', authenticateToken, async (req, res) => {
             return res.status(404).json({ error: 'User not found' });
         }
 
-        const userData = await User.findById(user.userId); // Use user.userId directly
+        const userData = await User.findById(user.userId).populate('forms'); // Use user.userId directly
         console.log(userData);
 
         const sanitizedUser = {
@@ -48,6 +48,7 @@ router.get('/profile', authenticateToken, async (req, res) => {
             lastname: userData.lastname,
             mobile: userData.mobile,
             email: userData.email,
+            forms: userData.forms, 
         };
 
         res.json(sanitizedUser);

@@ -18,12 +18,15 @@ const upload = multer({ storage: storage });
 router.post('/createForm', authenticateToken, upload.single('image'), async (req, res) => {
     try {
         console.log('req came');
+        const user = req.user;
+        const userData = req.userData;
 
         if (!req.file) {
             console.log('No file uploaded');
             return res.status(400).json({ error: 'No file uploaded' });
         }
         const newForm = new Form({
+            user: user.userId,
             username: req.body.username,
             email: req.body.email,
             phoneNumber: req.body.phoneNumber,
@@ -39,6 +42,9 @@ router.post('/createForm', authenticateToken, upload.single('image'), async (req
             estimatedAmount: req.body.estimatedAmount,
         });
         await newForm.save();
+
+        userData.forms.push(newForm._id);
+        await userData.save();
         res.status(201).json({ message: 'Data stored successfully!' });
     } catch (error) {
         console.log(error);

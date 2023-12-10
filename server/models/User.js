@@ -20,6 +20,12 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    forms: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Form'
+        }
+    ]
 })
 
 // fire a function before doc saved to db
