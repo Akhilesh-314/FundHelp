@@ -17,10 +17,12 @@ router.post('/signup', async (req, res) => {
 });
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
-
+    console.log('inside login')
     try {
+        console.log('inside try')
         const user = await User.login(email, password);
         const token = jwt.sign({ userId: user._id }, 'men secret', { expiresIn: '1h' });
+        console.log('token', token)
         res.status(200).json({ token })
     }
     catch (error) {

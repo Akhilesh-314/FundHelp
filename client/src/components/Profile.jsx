@@ -36,7 +36,7 @@ const UserProfile = () => {
   }, []);
 
   return (
-    <div>
+    <div style={{paddingBottom:'20vh'}}>
       <h2>User Profile</h2>
       {userData ? (
         <div>

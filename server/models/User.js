@@ -29,20 +29,25 @@ const userSchema = mongoose.Schema({
 })
 
 // fire a function before doc saved to db
-userSchema.pre('save', async function (next) {
-    const salt = await bcrypt.genSalt();
-    this.password = await bcrypt.hash(this.password, salt);
-    next();
-})
+// userSchema.pre('save', async function (next) {
+//     const salt = await bcrypt.genSalt();
+//     this.password = await bcrypt.hash(this.password, salt);
+//     next();
+// })
 
 // static method to login user
 userSchema.statics.login = async function (email, password) {
+    console.log('inside static login')
     const user = await this.findOne({ email });
+    console.log('user', user);
     if (!user) {
         return res.status(401).json({ error: 'Invalid credentials' });
     }
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) {
+    // if(password == user.password){
+
+    // }
+    // const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!(password == user.password)) {
         return res.status(401).json({ error: 'Invalid credentials' });
     }
     return user;
