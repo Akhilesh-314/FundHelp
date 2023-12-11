@@ -17,12 +17,10 @@ const upload = multer({ storage: storage });
 
 router.post('/createForm', authenticateToken, upload.single('image'), async (req, res) => {
     try {
-        console.log('req came');
         const user = req.user;
         const userData = req.userData;
 
         if (!req.file) {
-            console.log('No file uploaded');
             return res.status(400).json({ error: 'No file uploaded' });
         }
         const newForm = new Form({
@@ -61,5 +59,31 @@ router.get('/getForm', async (req, res) => {
         res.status(500).json({ error: 'Failed to fetch data from the server' });
     }
 });
+
+router.delete('/deleteForm/:formId', authenticateToken, async (req, res) => {
+    try {
+      const { userId } = req.user;
+      const { formId } = req.params;
+      // Find the form by ID
+      const form = await Form.findById(formId);
+  
+      // Check if the form exists
+      if (!form) {
+        return res.status(404).json({ error: 'Form not found' });
+      }
+      // Check if the logged-in user is the owner of the form
+      if (form.user == userId) {
+        return res.status(403).json({ error: 'Unauthorized. You are not the owner of this form.' });
+      }
+      // Delete the form
+      await Form.findByIdAndDelete(formId);
+  
+      res.status(200).json({ message: 'Form deleted successfully' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+  
 
 export default router;

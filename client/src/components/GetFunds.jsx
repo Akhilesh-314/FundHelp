@@ -54,7 +54,6 @@ const GetFunds = () => {
                     Authorization: `${token}`,
                 },
             });
-            console.log('response send');
             if (response.ok) {
                 alert('Data stored successfully!');
                 history.push('/donate');

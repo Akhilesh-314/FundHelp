@@ -17,12 +17,9 @@ router.post('/signup', async (req, res) => {
 });
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
-    console.log('inside login')
     try {
-        console.log('inside try')
         const user = await User.login(email, password);
         const token = jwt.sign({ userId: user._id }, 'men secret', { expiresIn: '1h' });
-        console.log('token', token)
         res.status(200).json({ token })
     }
     catch (error) {
@@ -42,7 +39,6 @@ router.get('/profile', authenticateToken, async (req, res) => {
         }
 
         const userData = await User.findById(user.userId).populate('forms'); // Use user.userId directly
-        console.log(userData);
 
         const sanitizedUser = {
             _id: userData._id, // Use userData._id instead of user._id

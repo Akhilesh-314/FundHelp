@@ -10,6 +10,14 @@ function Card(props) {
         window.open(whatsappLink);
     };
 
+    const handleDelete = () => {
+        // Add the logic for handling delete here
+        // You can use props.onDelete or any other mechanism to trigger the delete action
+        if (props.onDelete) {
+            props.onDelete();
+        }
+    };
+
     return (
         <>
             <div className="card">
@@ -25,6 +33,9 @@ function Card(props) {
                         <button className="donate" onClick={() => window.location.href = "https://buy.stripe.com/test_14k8zE9C60G9al24gg"}>
                             Donate
                         </button>
+                        {props.showDeleteButton && (
+                            <button className="delete" onClick={handleDelete}>Delete</button>
+                        )}
                     </div>
                 </div>
             </div>

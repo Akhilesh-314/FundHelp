@@ -3,6 +3,10 @@ import Card from "./Card";
 import { useEffect, useState } from "react";
 
 function Donate() {
+  const [data, setData] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredData, setFilteredData] = useState([]);
+
   const handleWhatsAppPay = () => {
     const stripeLink = "https://buy.stripe.com/test_14k8zE9C60G9al24gg";
     const message = `Hey, I want to make a payment. Here's the link: ${stripeLink}`;
@@ -11,8 +15,6 @@ function Donate() {
     window.open(whatsappLink);
   };
 
-  const [data, setData] = useState([]);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -20,7 +22,7 @@ function Donate() {
         if (response.ok) {
           const result = await response.json();
           setData(result);
-          console.log(result);
+          setFilteredData(result);
         } else {
           console.error('Failed to fetch data from the server');
         }
@@ -32,11 +34,24 @@ function Donate() {
     fetchData();
   }, []);
 
+  const handleSearch = (query) => {
+    // Update searchQuery state
+    setSearchQuery(query);
+
+    // Filter data based on the search query
+    const filtered = data.filter((item) =>
+      item.username.toLowerCase().includes(query.toLowerCase())
+    );
+
+    // Update filteredData state
+    setFilteredData(filtered);
+  };
+
   return (
     <>
       <h1 className="main-heading">Trending FundRaisers</h1>
       <div className="Cards">
-        {data.map((item) => (
+        {filteredData.map((item) => (
           <Card
             key={item._id}
             src={item.image}
@@ -53,40 +68,13 @@ function Donate() {
 
         <div className="form">
           <div className="search">
-            <input type="text" placeholder="Search user.." />
+            <input
+              type="text"
+              placeholder="Search user.."
+              value={searchQuery}
+              onChange={(e) => handleSearch(e.target.value)}
+            />
             <i className="fa-solid fa-magnifying-glass"></i>
-          </div>
-          <input type="text" placeholder="Selected User" readOnly />
-          <div className="details">
-            <input type="text" placeholder="First Name" />
-            <input type="text" placeholder="Last Name" />
-          </div>
-          <div className="details">
-            <input type="email" placeholder="Email Id" />
-            <input type="tel" placeholder="Mobile Number" />
-          </div>
-
-          <div className="payment-options">
-            <div className="container1">
-              <a
-                href="https://buy.stripe.com/test_14k8zE9C60G9al24gg"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="make-payment"
-              >
-                Make Payment
-              </a>
-            </div>
-            <div className="container2">
-              <button className="whatsapp" 
-              onClick={handleWhatsAppPay}
-              >
-                <div className="align-container2">
-                  <img src="./whatsapp.png" alt="" />
-                  <span>Whatsapp and Pay</span>
-                </div>
-              </button>
-            </div>
           </div>
         </div>
       </section>

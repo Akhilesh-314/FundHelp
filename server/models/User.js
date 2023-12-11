@@ -37,9 +37,7 @@ const userSchema = mongoose.Schema({
 
 // static method to login user
 userSchema.statics.login = async function (email, password) {
-    console.log('inside static login')
     const user = await this.findOne({ email });
-    console.log('user', user);
     if (!user) {
         return res.status(401).json({ error: 'Invalid credentials' });
     }

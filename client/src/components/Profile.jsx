@@ -35,6 +35,29 @@ const UserProfile = () => {
     fetchProfileData();
   }, []);
 
+  const handleDelete = async (formId) => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`http://localhost:6001/api/form/deleteForm/${formId}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
+
+      if (response.ok) {
+        setUserData((prevUserData) => ({
+          ...prevUserData,
+          forms: prevUserData.forms.filter((form) => form._id !== formId),
+        }));
+      } else {
+        console.error('Failed to delete form');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
   return (
     <div style={{paddingBottom:'20vh'}}>
       <h2>User Profile</h2>
@@ -55,6 +78,8 @@ const UserProfile = () => {
                 heading={item.cause}
                 personname={item.username}
                 funddetails={item.estimatedAmount}
+                showDeleteButton={true} // Pass the prop to show delete button
+                onDelete={() => handleDelete(item._id)} // Pass the delete function
               />
               ))}
             </div>
