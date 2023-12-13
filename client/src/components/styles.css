@@ -2,10 +2,11 @@
 /* navbar */
 .nav-container{
     height: 10vh;
+    max-width: 100%;
     display:flex;
     justify-content: space-around;
     align-items: center;
-    background: transparent;
+    background: radial-gradient(whitesmoke,pink,blue);
     z-index: 99;
 }
 
@@ -22,7 +23,7 @@
 }
 
 .nav-item a:hover{
-    border-bottom: 3px solid #0066f9;
+    border-bottom: 3px solid #900ee0;
 }
 
 .body-container{
@@ -41,6 +42,7 @@
     margin: auto;
     box-shadow: 0 7px 14px -5px rgba(0,0,0,0.15);
     box-shadow: 2px 1px 22px -4px rgba(0,0,0,0.25);
+    
 }
 
 .hero-section .button-card{
@@ -61,6 +63,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
     white-space: nowrap;
+    background: radial-gradient(whitesmoke,pink,blue);
     /* color: white; */
 }
 
@@ -71,7 +74,7 @@
 }
 
 .bg-light{
-    background:transparent !important;
+    background:transparenty !important;
 }
 
 
@@ -117,7 +120,7 @@
 /* footer */
 
 footer {
-    min-height: 17vh;
+    height: 6vh; /* Adjust the height to your desired value */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -126,6 +129,7 @@ footer {
     bottom: 0;
     width: 100%;
     z-index: 1;
+    background: radial-gradient(whitesmoke,pink);
 }
 
 /* ----------------------------------------------------------GetFunds styling-------------------------------------*/
@@ -390,8 +394,8 @@ footer {
 }
 
 .card-img{
-    width:100%;
-    height:auto;
+    width:350px;
+    height:350px;
 }
 
 .card-img img{

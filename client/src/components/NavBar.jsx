@@ -25,7 +25,7 @@ const NavBar = () => {
 
   return (
     <Container className="nav-container">
-      <h1 className="company-name">DonateEase</h1>
+      <h1 className="company-name">FundHelp</h1>
       <Nav className="nav-items">
         <NavItem>
           <NavLink

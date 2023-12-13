@@ -14,6 +14,7 @@ function Hero() {
 
   return (
     <div className="hero-section">
+      
 
       <div className="button-card" onClick={() => handleGetFund()}>
         <h1>Get Funds</h1>

@@ -9,7 +9,7 @@ function Donate() {
 
   const handleWhatsAppPay = () => {
     const stripeLink = "https://buy.stripe.com/test_14k8zE9C60G9al24gg";
-    const message = `Hey, I want to make a payment. Here's the link: ${stripeLink}`;
+    const message = `Hey, can you please help someone by donating some money: ${stripeLink}`;
     const encodedMessage = encodeURIComponent(message);
     const whatsappLink = `https://wa.me/?text=${encodedMessage}`;
     window.open(whatsappLink);
