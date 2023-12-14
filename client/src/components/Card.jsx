@@ -30,7 +30,7 @@ function Card(props) {
                     <p className="fund-raised">Funds have to raise:{props.funddetails}</p>
                     <div className="buttons-card">
                         <button className="share" onClick={handleWhatsAppPay} >Share</button>
-                        <button className="donate" onClick={() => window.location.href = "https://buy.stripe.com/test_14k8zE9C60G9al24gg"}>
+                        <button className="donate" onClick={() => window.location.href = "https://buy.stripe.com/test_14k7th7Uo8t1dvG8ww"}>
                             Donate
                         </button>
                         {props.showDeleteButton && (

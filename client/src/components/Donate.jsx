@@ -8,7 +8,7 @@ function Donate() {
   const [filteredData, setFilteredData] = useState([]);
 
   const handleWhatsAppPay = () => {
-    const stripeLink = "https://buy.stripe.com/test_14k8zE9C60G9al24gg";
+    const stripeLink = "https://buy.stripe.com/test_14k7th7Uo8t1dvG8ww";
     const message = `Hey, can you please help someone by donating some money: ${stripeLink}`;
     const encodedMessage = encodeURIComponent(message);
     const whatsappLink = `https://wa.me/?text=${encodedMessage}`;
