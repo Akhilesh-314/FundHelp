@@ -10,7 +10,7 @@ const GetFunds = () => {
     const [cause, setCause] = useState('');
     const [isPublic, setIsPublic] = useState(false);
     const [isPrivate, setIsPrivate] = useState(false);
-    const [whatsappNumber, setWhatsappNumber] = useState(0);
+    // const [whatsappNumber, setWhatsappNumber] = useState(0);
     const [bankAccountHolder, setBankAccountHolder] = useState('');
     const [bankAccountNumber, setBankAccountNumber] = useState(0);
     const [ifscCode, setIfscCode] = useState('');
