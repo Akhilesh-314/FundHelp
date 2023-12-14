@@ -142,7 +142,7 @@ const GetFunds = () => {
                             </label>
                             <div className="option-select"></div>
                             <label className="check-container">
-                                <p>Get payment via DonateEase platform</p>
+                                <p>Get payment via FundHelp platform</p>
                                 <input
                                     type="checkbox"
                                     name="isPublic"
@@ -151,7 +151,7 @@ const GetFunds = () => {
                                 />
                                 <span className="checkmark"></span>
                             </label>
-                            <label className="check-container">
+                            {/* <label className="check-container">
                                 <p>Get payment privately (Donor contacts via WhatsApp)</p>
                                 <input
                                     type="checkbox"
@@ -160,7 +160,7 @@ const GetFunds = () => {
                                     onChange={(e) => setIsPrivate(e.target.checked)}
                                 />
                                 <span className="checkmark"></span>
-                            </label>
+                            </label> */}
                         </div>
 
                         {isPrivate && (
